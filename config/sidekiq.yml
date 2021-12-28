@@ -1,0 +1,13 @@
+:verbose: false
+:concurrency: 3
+:timeout: 25
+:queues:
+  - mailers
+  - critical
+  - high_priority
+  - normal_priority
+  - low_priority
+staging:
+  :concurrency: 3
+production:
+  :concurrency: 3
