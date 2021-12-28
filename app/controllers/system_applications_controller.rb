@@ -1,54 +1,55 @@
 # frozen_string_literal: true
 
 class SystemApplicationsController < ApplicationController
-  before_action :set_system_application, only: [:show, :update, :destroy]
+  include Api::V1::SystemApplication
+  before_action :set_application, only: [:show, :update, :destroy]
 
-  # GET /system_applications
+  # GET /applications
   def index
-    # @system_applications = SystemApplication.all
-    @pagy, @system_applications = pagy(SystemApplication.all)
+    # @applications = SystemApplication.all
+    @pagy, @applications = pagy(SystemApplication.all)
 
-    render json: { system_applications: @system_applications, pagy: pagy_json(@pagy) }
+    render json: { applications: applications_json(@applications, @includes), pagy: pagy_json(@pagy, @includes) }
   end
 
-  # GET /system_applications/1
+  # GET /applications/1
   def show
-    render json: @system_application
+    render json: application_json(@application, @includes)
   end
 
-  # POST /system_applications
+  # POST /applications
   def create
-    @system_application = SystemApplication.new(system_application_params)
+    @application = SystemApplication.new(application_params)
 
-    if @system_application.save
-      render json: @system_application, status: :created, location: @system_application
+    if @application.save
+      render json: application_json(@application, @includes), status: :created, location: @application
     else
-      render json: @system_application.errors, status: :unprocessable_entity
+      render json: @application.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /system_applications/1
+  # PATCH/PUT /applications/1
   def update
-    if @system_application.update(system_application_params)
-      render json: @system_application
+    if @application.update(application_params)
+      render json: application_json(@application, @includes)
     else
-      render json: @system_application.errors, status: :unprocessable_entity
+      render json: @application.errors, status: :unprocessable_entity
     end
   end
 
-  # DELETE /system_applications/1
+  # DELETE /applications/1
   def destroy
-    @system_application.destroy
+    @application.destroy
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_system_application
-      @system_application = SystemApplication.find(params[:id])
+    def set_application
+      @application = SystemApplication.find_by_token!(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
-    def system_application_params
-      params.require(:system_application).permit(:name, :token, :chats_count)
+    def application_params
+      params.require(:application).permit(:name, :token)
     end
 end

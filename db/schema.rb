@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 2021_12_28_162736) do
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "number", null: false
     t.string "slug"
-    t.text "body"
+    t.text "body", default: "''"
     t.bigint "ahoy_visit_id"
     t.bigint "chat_id"
     t.datetime "created_at", null: false
