@@ -8,7 +8,7 @@ class CreateAhoyVisitsAndEvents < ActiveRecord::Migration[5.2]
       # simply remove any you don't want
 
       # user
-      t.references :user
+      # t.references :user
 
       # standard
       t.string :ip
