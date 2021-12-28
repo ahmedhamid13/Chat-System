@@ -33,6 +33,10 @@ gem "bootsnap", ">= 1.1.0", require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem "rubocop", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-faker"
+  gem "rubocop-performance", require: false
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
 end
 
@@ -59,3 +63,4 @@ gem "pagy"
 gem "friendly_id"
 gem "jwt"
 gem "colorize"
+gem "rollbar"
