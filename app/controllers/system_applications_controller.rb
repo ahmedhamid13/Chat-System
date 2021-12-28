@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SystemApplicationsController < ApplicationController
   before_action :set_system_application, only: [:show, :update, :destroy]
 
@@ -40,14 +42,13 @@ class SystemApplicationsController < ApplicationController
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_system_application
+      @system_application = SystemApplication.find(params[:id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_system_application
-    @system_application = SystemApplication.find(params[:id])
-  end
-
-  # Only allow a trusted parameter "white list" through.
-  def system_application_params
-    params.require(:system_application).permit(:name, :token, :chats_count)
-  end
+    # Only allow a trusted parameter "white list" through.
+    def system_application_params
+      params.require(:system_application).permit(:name, :token, :chats_count)
+    end
 end

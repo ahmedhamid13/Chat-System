@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class ChatsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -11,7 +13,7 @@ class ChatsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create chat" do
-    assert_difference('Chat.count') do
+    assert_difference("Chat.count") do
       post chats_url, params: { chat: { messages_count: @chat.messages_count, number: @chat.number, system_application_id: @chat.system_application_id } }, as: :json
     end
 
@@ -29,7 +31,7 @@ class ChatsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy chat" do
-    assert_difference('Chat.count', -1) do
+    assert_difference("Chat.count", -1) do
       delete chat_url(@chat), as: :json
     end
 

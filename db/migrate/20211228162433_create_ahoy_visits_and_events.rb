@@ -48,7 +48,7 @@ class CreateAhoyVisitsAndEvents < ActiveRecord::Migration[5.2]
 
     create_table :ahoy_events do |t|
       t.references :visit
-      t.references :user
+      # t.references :user
 
       t.string :name
       t.json :properties

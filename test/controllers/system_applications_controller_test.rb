@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class SystemApplicationsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -11,7 +13,7 @@ class SystemApplicationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create system_application" do
-    assert_difference('SystemApplication.count') do
+    assert_difference("SystemApplication.count") do
       post system_applications_url, params: { system_application: { chats_count: @system_application.chats_count, name: @system_application.name, token: @system_application.token } }, as: :json
     end
 
@@ -29,7 +31,7 @@ class SystemApplicationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy system_application" do
-    assert_difference('SystemApplication.count', -1) do
+    assert_difference("SystemApplication.count", -1) do
       delete system_application_url(@system_application), as: :json
     end
 

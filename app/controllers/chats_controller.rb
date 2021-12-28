@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChatsController < ApplicationController
   before_action :set_chat, only: [:show, :update, :destroy]
 
@@ -40,14 +42,13 @@ class ChatsController < ApplicationController
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_chat
+      @chat = Chat.find(params[:id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_chat
-    @chat = Chat.find(params[:id])
-  end
-
-  # Only allow a trusted parameter "white list" through.
-  def chat_params
-    params.require(:chat).permit(:number, :messages_count, :system_application_id)
-  end
+    # Only allow a trusted parameter "white list" through.
+    def chat_params
+      params.require(:chat).permit(:number, :messages_count, :system_application_id)
+    end
 end

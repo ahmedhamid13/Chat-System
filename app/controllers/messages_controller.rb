@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :update, :destroy]
 
@@ -40,14 +42,13 @@ class MessagesController < ApplicationController
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_message
+      @message = Message.find(params[:id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_message
-    @message = Message.find(params[:id])
-  end
-
-  # Only allow a trusted parameter "white list" through.
-  def message_params
-    params.require(:message).permit(:number, :body, :chat_id)
-  end
+    # Only allow a trusted parameter "white list" through.
+    def message_params
+      params.require(:message).permit(:number, :body, :chat_id)
+    end
 end

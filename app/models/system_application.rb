@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SystemApplication < ApplicationRecord
   visitable :ahoy_visit
   extend FriendlyId

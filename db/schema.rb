@@ -14,19 +14,16 @@ ActiveRecord::Schema.define(version: 2021_12_28_162736) do
 
   create_table "ahoy_events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "visit_id"
-    t.bigint "user_id"
     t.string "name"
     t.text "properties", limit: 4294967295, collation: "utf8mb4_bin"
     t.datetime "time"
     t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
-    t.index ["user_id"], name: "index_ahoy_events_on_user_id"
     t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
   end
 
   create_table "ahoy_visits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "visit_token"
     t.string "visitor_token"
-    t.bigint "user_id"
     t.string "ip"
     t.text "user_agent"
     t.text "referrer"
@@ -49,7 +46,6 @@ ActiveRecord::Schema.define(version: 2021_12_28_162736) do
     t.string "os_version"
     t.string "platform"
     t.datetime "started_at"
-    t.index ["user_id"], name: "index_ahoy_visits_on_user_id"
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
 
