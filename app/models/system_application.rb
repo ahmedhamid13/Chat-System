@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class SystemApplication < ApplicationRecord
-  visitable :ahoy_visit
   extend FriendlyId
   friendly_id :token, use: :slugged
 

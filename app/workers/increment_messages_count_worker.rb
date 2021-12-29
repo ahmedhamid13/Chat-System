@@ -2,7 +2,7 @@
 
 class IncrementMessagesCountWorker
   include Sidekiq::Worker
-  sidekiq_options queue: 'normal_priority', retry: 3
+  sidekiq_options queue: "normal_priority", retry: 3
 
   def perform(chat_id)
     chat = Chat.find(chat_id)

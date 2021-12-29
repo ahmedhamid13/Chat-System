@@ -3,7 +3,6 @@
 class Message < ApplicationRecord
   include SearchableMessage
 
-  visitable :ahoy_visit
   extend FriendlyId
   friendly_id :number, use: :slugged
 

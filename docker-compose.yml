@@ -1,0 +1,86 @@
+version: '3.1'
+services:
+    #Container for Elasticsearch
+    elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+        environment:
+            - discovery.type=single-node
+            - cluster.name=docker-cluster
+            - bootstrap.memory_lock=true
+            - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+        ulimits:
+            memlock:
+                soft: -1
+                hard: -1
+        ports:
+            - 9200:9200
+        volumes:
+            - esdata:/usr/share/elasticsearch/data
+
+    #Container for Kibana
+    # kibana:
+    #     image: docker.elastic.co/kibana/kibana:7.10.1
+    #     ports:
+    #         - 5602:5601
+    #     depends_on:
+    #         - elasticsearch
+
+    #Container for MySQl
+    db: 
+        image: mysql:5.7
+        restart: always
+        volumes:
+            - db_data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: chat_system_development
+        # ports:
+        #     - "3306:3306"
+
+    #Container for Rails
+    app: 
+        build: .
+        entrypoint: [bin/entry]
+        command: bundle exec rails s -p 3000 -b '0.0.0.0'
+        volumes: 
+            - ".:/app"
+        ports: 
+            - "3001:3000"
+        depends_on:
+            - db
+            - sidekiq
+            - elasticsearch
+        links:
+            - db
+        environment:
+            RAILS_ENV: "development"
+            REDIS_URL: "redis://redis:6379/12"
+            DB_NAME: chat_system_development
+            DB_USER: root
+            DB_PASSWORD: admin
+            DB_HOST: db
+
+    #Container for Redis
+    redis:
+        image: redis
+        volumes:
+            - .tmp/db:/var/lib/redis/data
+        depends_on:
+            - db
+
+    #Container for Sidekiq
+    sidekiq:
+        build: .
+        command: 'bundle exec sidekiq -C ./config/sidekiq.yml'
+        volumes:
+            - ".:/app"
+        environment:
+            RAILS_ENV: "development"
+            REDIS_URL: "redis://redis:6379/12"
+        depends_on:
+            - db
+            - redis
+    
+volumes:
+    db_data: 
+    esdata: 

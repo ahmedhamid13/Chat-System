@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Chat < ApplicationRecord
-  visitable :ahoy_visit
   extend FriendlyId
   friendly_id :number, use: :slugged
 
