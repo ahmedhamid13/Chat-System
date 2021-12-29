@@ -30,13 +30,15 @@ class Chat < ApplicationRecord
   after_create :set_system_application_count_up
 
   def set_system_application_count_up
-    self.system_application.update(chats_count: (self.system_application.chats_count.to_i + 1)) if system_application.present?
+    # self.system_application.update(chats_count: (self.system_application.chats_count.to_i + 1)) if system_application.present?
+    IncrementChatsCountWorker.perform_async(self.system_application_id)
   end
 
   after_destroy :set_system_application_count_down
 
   def set_system_application_count_down
-    self.system_application.update(chats_count: (self.system_application.chats_count.to_i - 1) < 0 ? 0 : (self.system_application.chats_count - 1)) if system_application.present?
+    # self.system_application.update(chats_count: (self.system_application.chats_count.to_i - 1) < 0 ? 0 : (self.system_application.chats_count - 1)) if system_application.present?
+    DecrementChatsCountWorker.perform_async(self.system_application_id)
   end
 
   def as_json(options = {})

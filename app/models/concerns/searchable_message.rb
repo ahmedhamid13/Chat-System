@@ -1,4 +1,6 @@
-module SearchableMsg
+# frozen_string_literal: true
+
+module SearchableMessage
   extend ActiveSupport::Concern
 
   included do

@@ -9,6 +9,7 @@ class SystemApplication < ApplicationRecord
   has_many :messages, -> { distinct }, through: :chats, source: :messages, dependent: :destroy
 
   validates :name, presence: true
+  validates :name, length: { maximum: 255 }
   validates :token, presence: true, uniqueness: true
   validates :chats_count, numericality: { greater_than_or_equal_to: 0 }, if: -> { chats_count.present? }
 

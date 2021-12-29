@@ -46,7 +46,7 @@ class ChatsController < ApplicationController
 
   private
     def set_application
-      @application = SystemApplication.find_by_token!(params[:application_id])
+      @application = SystemApplication.includes(:chats).find_by_token!(params[:application_id])
     end
 
     # Use callbacks to share common setup or constraints between actions.

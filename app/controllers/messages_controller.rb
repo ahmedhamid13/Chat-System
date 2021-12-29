@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
     if params[:q].present?
       @pagy, messages = pagy_array(@chat.messages.search(params[:q]))
       @messages = messages.map do |r|
-        r.merge(r.delete('_source')).merge('id': r.delete('_id'))
+        r.merge(r.delete("_source")).merge('id': r.delete("_id"))
       end
     else
       @pagy, @messages = pagy(@chat.messages)
@@ -55,23 +55,22 @@ class MessagesController < ApplicationController
   end
 
   private
+    def set_application
+      @application = SystemApplication.includes(:chats).find_by_token!(params[:application_id])
+    end
 
-  def set_application
-    @application = SystemApplication.find_by_token!(params[:application_id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_chat
+      @chat = @application.chats.includes(:messages).find_by_number!(params[:chat_id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_chat
-    @chat = @application.chats.find_by_number!(params[:chat_id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_message
+      @message = @chat.messages.find_by_number!(params[:id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_message
-    @message = @chat.messages.find_by_number!(params[:id])
-  end
-
-  # Only allow a trusted parameter "white list" through.
-  def message_params
-    params.require(:message).permit(:body).merge(chat: @chat)
-  end
+    # Only allow a trusted parameter "white list" through.
+    def message_params
+      params.require(:message).permit(:body).merge(chat: @chat)
+    end
 end

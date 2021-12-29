@@ -27,6 +27,7 @@ module ChatSystem
     config.active_job.queue_adapter = :sidekiq
     
     config.autoload_paths += %w[lib]
+    config.autoload_paths += %W(#{config.root}/app/workers)
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
