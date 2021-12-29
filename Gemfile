@@ -57,7 +57,7 @@ gem "sidekiq-statistic"
 gem "sidekiq-scheduler"
 
 # gem 'rails_admin'
-gem "ahoy_matey"
+# gem "ahoy_matey"
 gem "faker"
 gem "pagy"
 gem "friendly_id"
