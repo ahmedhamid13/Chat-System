@@ -1,0 +1,8 @@
+# # config/elasticsearch.yml
+# development: &default
+#   host: <%= ENV['ELASTICSEARCH_URL'] || 'http://localhost:9200/' %>
+#   log: true
+# test:
+#   host: <%= ENV['ELASTICSEARCH_URL'] || 'http://localhost:9200/' %>
+# production:
+#   host: <%= ENV['ELASTICSEARCH_URL'] || 'http://www.yourelasticindex:9200' %>

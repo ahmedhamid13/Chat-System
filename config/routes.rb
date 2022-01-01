@@ -9,4 +9,9 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => "sidekiq", as: "sidekiq"
     mount RailsPerformance::Engine, at: "site_performance", as: "site_performance"
   end
+
+  direct :homepage do
+    'https://www.postman.com/collections/6ed2730407949c6a8158'
+  end
+  # root to: 'application#homepage'
 end

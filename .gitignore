@@ -18,6 +18,9 @@
 !/storage/.keep
 
 .byebug_history
+/volumes/es/*
+/volumes/mysql_db/*
+/volumes/redis/*
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key

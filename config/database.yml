@@ -16,7 +16,9 @@ default: &default
   database: <%= ENV['DB_NAME'] %>
   username: <%= ENV['DB_USER'] || 'root' %>
   password: <%= ENV['DB_PASSWORD'] || 'admin' %>
-  host: <%= ENV['DB_HOST'] || 'localhost' %>
+  port: <%= ENV['DB_PORT'] || 3306 %>
+  host: <%= ENV['DB_HOST'] || '127.0.0.1' %>
+  socket: /var/run/mysqld/mysqlx.sock
 
 development:
   <<: *default

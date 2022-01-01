@@ -1,5 +1,6 @@
 require 'sidekiq'
 require 'sidekiq/web'
+require 'sidekiq-scheduler/web'
 require 'sidekiq-statistic'
 
 if ENV["REDIS_URL"]

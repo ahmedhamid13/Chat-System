@@ -11,3 +11,10 @@ staging:
   :concurrency: 3
 production:
   :concurrency: 3
+:schedule:
+  update_chats_count:
+    cron: '* 30 * * * *'   # Runs once per 30 minutes
+    class: UpdateChatsCount
+  update_messages_count:
+    cron: '* 30 * * * *'   # Runs once per 30 minutes
+    class: UpdateMessagesCount

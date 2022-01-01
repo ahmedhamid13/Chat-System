@@ -1,15 +1,15 @@
 RailsPerformance.setup do |config|
-  config.redis = Redis::Namespace.new("#{Rails.env}-rails-performance", redis: Redis.new(url: ENV["REDISTOGO_URL"])) if ENV["REDISTOGO_URL"]
+  config.redis = Redis::Namespace.new("#{Rails.env}-rails-performance", redis: Redis.new(url: ENV["REDIS_URL"])) if ENV["REDIS_URL"]
   config.duration = 4.hours
 
   config.debug = false # currently not used>
   config.enabled = true
 
   # default path where to mount gem
-  config.mount_at = '/site_performance'
+  # config.mount_at = '/admin/site_performance'
 
   # protect your Performance Dashboard with HTTP BASIC password
-  config.http_basic_authentication_enabled = true
+  config.http_basic_authentication_enabled = false
   config.http_basic_authentication_user_name = 'admin'
   config.http_basic_authentication_password = '1234'
 
