@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_12_28_162736) do
 
-  create_table "chats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "chats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "number", null: false
     t.integer "messages_count", default: 0
     t.string "slug"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_12_28_162736) do
     t.index ["system_application_id"], name: "index_chats_on_system_application_id"
   end
 
-  create_table "friendly_id_slugs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "friendly_id_slugs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2021_12_28_162736) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
-  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "number", null: false
     t.string "slug"
     t.text "body"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_12_28_162736) do
     t.index ["slug"], name: "index_messages_on_slug"
   end
 
-  create_table "system_applications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "system_applications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "token", null: false
     t.integer "chats_count", default: 0

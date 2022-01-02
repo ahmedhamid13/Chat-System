@@ -1,4 +1,4 @@
-4.times do |i|
+3.times do |i|
   app = SystemApplication.create!(
     name: "System Application #{i + 1}",
     # token: Faker::IDNumber.valid,

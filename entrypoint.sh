@@ -1,11 +1,13 @@
 #!/bin/bash
-set -e
 
-# Remove a potentially pre-existing server.pid for Rails.
-rm -f /myapp/tmp/pids/server.pid
+# Wait for DB services
+sh ./config/docker/wait-for-services.sh
 
-rake db:migrate
-# rake db:seed
+# Run Workers (Sidekiq)
+# sh ./config/docker/run-sidekiq.sh
 
-# Then exec the container's main process (what's set as CMD in the Dockerfile).
-exec "$@"
+# Prepare DB (Migrate - If not? Create db & Migrate)
+sh ./config/docker/prepare-db.sh
+
+# Start Application
+bundle exec puma -C config/puma.rb

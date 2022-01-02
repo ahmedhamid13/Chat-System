@@ -2,7 +2,7 @@
 
 require "sidekiq-scheduler"
 
-class UpdateChatsCount
+class UpdateChatsCountWorker
   include Sidekiq::Worker
   sidekiq_options queue: "high_priority", retry: 3
 

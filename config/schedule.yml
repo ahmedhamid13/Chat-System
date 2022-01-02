@@ -1,0 +1,9 @@
+update_chats_count:
+  cron: "*/30 * * * *"
+  class: "UpdateChatsCountWorker"
+  queue: high_priority
+
+update_messages_count:
+  cron: "*/30 * * * *"
+  class: "UpdateMessagesCountWorker"
+  queue: high_priority
