@@ -67,6 +67,12 @@ You should have `ruby`, `rails`, `redis`, `elasticsearch`, `docker` and `mysql` 
    $ rails test test/controllers
    ```
 
+# Additional Funtionalities
+
+1. Check Performance on ({{url}}/admin/site_performance)
+1. Check Sidekiq on ({{url}}/admin/sidekiq)
+
+
 # Erd of ChatSystem
 
 <img src="https://github.com/ahmedhamid13/Chat-System/blob/master/erd_chat_system.png" alt="chat system erd" width="720">
