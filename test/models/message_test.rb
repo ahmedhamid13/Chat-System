@@ -6,7 +6,7 @@ class MessageTest < ActiveSupport::TestCase
   setup do
     @application = SystemApplication.new(name: "name")
     @application.save
-    
+
     @chat = Chat.new(system_application: @application)
     @chat.save
   end

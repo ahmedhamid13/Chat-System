@@ -69,7 +69,7 @@ You should have `ruby`, `rails`, `redis`, `elasticsearch`, `docker` and `mysql` 
 
 # Erd of ChatSystem
 
-<img src="https://github.com/ahmedhamid13/Chat-System/blob/master/erd_chat_system.png" alt="chat system erd" width="400">
+<img src="https://github.com/ahmedhamid13/Chat-System/blob/master/erd_chat_system.png" alt="chat system erd" width="720">
 
 # QR-Code To Deployment web
 

@@ -12,14 +12,15 @@ class MessagesController < ApplicationController
   def index
     # @messages = Message.all
     if params[:q].present?
-      @pagy, messages = pagy_array(@chat.messages.search(params[:q]))
+      @pagy, messages = pagy_array(@chat.messages.where("lower(number) LIKE :q OR lower(body) LIKE :q", q: "%#{params[:q].downcase}%"))
+
+      # @pagy, messages = pagy_array(@chat.messages.search(params[:q]))
       @messages = messages.map do |r|
         r.merge(r.delete("_source")).merge('id': r.delete("_id"))
       end
     else
       @pagy, @messages = pagy(@chat.messages)
     end
-
 
     render json: { messages: messages_json(@messages, @includes), pagy: pagy_json(@pagy, @includes), application: application_json(@application), chat: chat_json(@chat) }
   end
