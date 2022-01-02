@@ -40,7 +40,7 @@ You should have `ruby`, `rails`, `redis`, `elasticsearch`, `docker` and `mysql` 
    ```sh
    $ bundle exec sidekiq -C ./config/sidekiq.yml
    ```
-
+7. Open Application on: (localhost:3000)
 # Docker
 
 1. Build your application image
@@ -55,6 +55,7 @@ You should have `ruby`, `rails`, `redis`, `elasticsearch`, `docker` and `mysql` 
    ```sh
    $ docker-compose run app rails <>
    ```
+4. Open Application on: (localhost:3001)
 
 # Unit Test (Spec)
 
