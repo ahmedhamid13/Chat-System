@@ -25,7 +25,7 @@ module ChatSystem
     config.time_zone = 'Cairo'
     config.beginning_of_week = :saturday
     config.active_job.queue_adapter = :sidekiq
-    config.cache_store = :redis_store, "#{ENV["REDIS_URL"]}/cache", { expires_in: 90.minutes } if ENV["REDIS_URL"]
+    # config.cache_store = :redis_store, "#{ENV["REDIS_URL"]}/cache", { expires_in: 90.minutes } if ENV["REDIS_URL"]
     
     config.autoload_paths += %w[lib]
     config.autoload_paths += %W(#{config.root}/app/workers)

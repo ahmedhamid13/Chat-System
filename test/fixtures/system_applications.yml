@@ -3,9 +3,9 @@
 one:
   name: MyString
   token: MyString
-  chats_count: MyString
+  chats_count: 1
 
 two:
   name: MyString
   token: MyString
-  chats_count: MyString
+  chats_count: 1

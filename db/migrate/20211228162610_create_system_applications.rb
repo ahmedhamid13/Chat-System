@@ -3,7 +3,7 @@ class CreateSystemApplications < ActiveRecord::Migration[5.2]
     create_table :system_applications do |t|
       t.string :name, null: false
       t.string :token, null: false, unique: true, index: true
-      t.string :chats_count, default: 0
+      t.integer :chats_count, default: 0
       t.string :slug, unique: true, index: true
 
       t.timestamps

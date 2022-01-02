@@ -9,21 +9,27 @@ class Chat < ApplicationRecord
 
   validates :number, :system_application, presence: true
   validates :number, uniqueness: { scope: [:system_application] }
+  validates :number, numericality: { greater_than_or_equal_to: 0 }, if: -> { number.present? }
   validates :messages_count, numericality: { greater_than_or_equal_to: 0 }, if: -> { messages_count.present? }
+  validates :number,
+            inclusion: { in: ->(i) { [i.number_was] } },
+            on: :update
 
   before_validation :set_number, on: :create
 
   def set_number
-    current_numbers = self.system_application.chats.pluck(:number)
-    current_numbers_length = current_numbers.size
-    total = (current_numbers_length + 1) * (current_numbers_length + 2) / 2
-    uniq_num = (total - current_numbers.sum).abs
+    if self.system_application
+      current_numbers = self.system_application.chats.pluck(:number)
+      current_numbers_length = current_numbers.size
+      total = (current_numbers_length + 1) * (current_numbers_length + 2) / 2
+      uniq_num = (total - current_numbers.sum).abs
 
-    while self.system_application.chats.find_by_number(uniq_num).present?
-      uniq_num = system_application.get_uniq_number
+      while self.system_application.chats.find_by_number(uniq_num).present?
+        uniq_num = system_application.get_uniq_number
+      end
+
+      self.number = uniq_num
     end
-
-    self.number = uniq_num
   end
 
   after_create :set_system_application_count_up

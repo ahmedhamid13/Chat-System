@@ -8,33 +8,33 @@ class ChatsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get chats_url, as: :json
+    get application_chats_url(application_id: @chat.system_application.token), as: :json
+    assert_response :success
+  end
+
+  test "should show chat" do
+    get application_chat_url(application_id: @chat.system_application.token, id: @chat.number), as: :json
     assert_response :success
   end
 
   test "should create chat" do
     assert_difference("Chat.count") do
-      post chats_url, params: { chat: { messages_count: @chat.messages_count, number: @chat.number, system_application_id: @chat.system_application_id } }, as: :json
+      post application_chats_url(application_id: @chat.system_application.token), params: { chat: { number: @chat.number, system_application_id: @chat.system_application_id } }, as: :json
     end
 
     assert_response 201
   end
 
-  test "should show chat" do
-    get chat_url(@chat), as: :json
-    assert_response :success
-  end
-
   test "should update chat" do
-    patch chat_url(@chat), params: { chat: { messages_count: @chat.messages_count, number: @chat.number, system_application_id: @chat.system_application_id } }, as: :json
+    patch application_chat_url(application_id: @chat.system_application.token, id: @chat.number), params: { chat: { number: @chat.number, system_application_id: @chat.system_application_id } }, as: :json
     assert_response 200
   end
 
-  test "should destroy chat" do
-    assert_difference("Chat.count", -1) do
-      delete chat_url(@chat), as: :json
-    end
+  # test "should destroy chat" do
+  #   assert_difference("Chat.count", -1) do
+  #     delete application_chat_url(application_id: @chat.system_application.token, id: @chat.number), as: :json
+  #   end
 
-    assert_response 204
-  end
+  #   assert_response 204
+  # end
 end

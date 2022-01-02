@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :applications, :controller => "system_applications" do
-    resources :chats, except: %i[update] do
+    resources :chats do
       resources :messages
     end
   end

@@ -22,7 +22,7 @@ class SystemApplicationsController < ApplicationController
     @application = SystemApplication.new(application_params)
 
     if @application.save
-      render json: application_json(@application, @includes), status: :created, location: @application
+      render json: application_json(@application, @includes), status: :created, location: application_url(@application.token)
     else
       render json: @application.errors, status: :unprocessable_entity
     end
@@ -31,7 +31,7 @@ class SystemApplicationsController < ApplicationController
   # PATCH/PUT /applications/1
   def update
     if @application.update(application_params)
-      render json: application_json(@application, @includes)
+      render json: application_json(@application, @includes), location: application_url(@application.token)
     else
       render json: @application.errors, status: :unprocessable_entity
     end

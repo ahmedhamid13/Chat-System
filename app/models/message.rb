@@ -11,7 +11,11 @@ class Message < ApplicationRecord
 
   validates :number, :chat, presence: true
   validates :number, uniqueness: { scope: [:chat] }
+  validates :number, numericality: { greater_than_or_equal_to: 0 }, if: -> { number.present? }
   validates :body, length: { maximum: 3000 }
+  validates :number,
+            inclusion: { in: ->(i) { [i.number_was] } },
+            on: :update
 
   before_validation :set_number, on: :create
 

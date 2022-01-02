@@ -2,10 +2,10 @@
 
 one:
   number: 1
-  messages_count: MyString
+  messages_count: 1
   system_application: one
 
 two:
   number: 1
-  messages_count: MyString
+  messages_count: 1
   system_application: two

@@ -8,31 +8,31 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get messages_url, as: :json
+    get application_chat_messages_url(application_id: @message.chat.system_application.token, chat_id: @message.chat.number), as: :json
+    assert_response :success
+  end
+
+  test "should show message" do
+    get application_chat_message_url(application_id: @message.chat.system_application.token, chat_id: @message.chat.number, id: @message.number), as: :json
     assert_response :success
   end
 
   test "should create message" do
     assert_difference("Message.count") do
-      post messages_url, params: { message: { chat_id: @message.chat_id, number: @message.number, body: @message.body } }, as: :json
+      post application_chat_messages_url(application_id: @message.chat.system_application.token, chat_id: @message.chat.number), params: { message: { body: @message.body } }, as: :json
     end
 
     assert_response 201
   end
 
-  test "should show message" do
-    get message_url(@message), as: :json
-    assert_response :success
-  end
-
   test "should update message" do
-    patch message_url(@message), params: { message: { chat_id: @message.chat_id, number: @message.number, body: @message.body } }, as: :json
+    patch application_chat_message_url(application_id: @message.chat.system_application.token, chat_id: @message.chat.number, id: @message.number), params: { message: { body: @message.body } }, as: :json
     assert_response 200
   end
 
   test "should destroy message" do
     assert_difference("Message.count", -1) do
-      delete message_url(@message), as: :json
+      delete application_chat_message_url(application_id: @message.chat.system_application.token, chat_id: @message.chat.number, id: @message.number), as: :json
     end
 
     assert_response 204
