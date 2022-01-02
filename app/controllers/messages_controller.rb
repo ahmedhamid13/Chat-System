@@ -12,9 +12,9 @@ class MessagesController < ApplicationController
   def index
     # @messages = Message.all
     if params[:q].present?
-      @pagy, messages = pagy_array(@chat.messages.where("lower(number) LIKE :q OR lower(body) LIKE :q", q: "%#{params[:q].downcase}%"))
+      # @pagy, messages = pagy_array(@chat.messages.where("lower(number) LIKE :q OR lower(body) LIKE :q", q: "%#{params[:q].downcase}%"))
 
-      # @pagy, messages = pagy_array(@chat.messages.search(params[:q]))
+      @pagy, messages = pagy_array(@chat.messages.search(params[:q]))
       @messages = messages.map do |r|
         r.merge(r.delete("_source")).merge('id': r.delete("_id"))
       end
