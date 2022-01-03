@@ -30,11 +30,11 @@ class SystemApplicationsControllerTest < ActionDispatch::IntegrationTest
     assert_response 200
   end
 
-  # test "should destroy system_application" do
-  #   assert_difference("SystemApplication.count", -1) do
-  #     delete application_url(@system_application.token), as: :json
-  #   end
+  test "should destroy system_application" do
+    assert_difference("SystemApplication.count", -1) do
+      delete application_url(@system_application.token), as: :json
+    end
 
-  #   assert_response 204
-  # end
+    assert_response 204
+  end
 end

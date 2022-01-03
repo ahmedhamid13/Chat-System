@@ -30,11 +30,11 @@ class ChatsControllerTest < ActionDispatch::IntegrationTest
     assert_response 200
   end
 
-  # test "should destroy chat" do
-  #   assert_difference("Chat.count", -1) do
-  #     delete application_chat_url(application_id: @chat.system_application.token, id: @chat.number), as: :json
-  #   end
+  test "should destroy chat" do
+    assert_difference("Chat.count", -1) do
+      delete application_chat_url(application_id: @chat.system_application.token, id: @chat.number), as: :json
+    end
 
-  #   assert_response 204
-  # end
+    assert_response 204
+  end
 end

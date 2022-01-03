@@ -92,7 +92,7 @@ module SearchableMessage
     end
 
     after_commit on: [:destroy] do
-      __elasticsearch__.delete_document
+      __elasticsearch__.delete_document ignore: 404
     end
   end
 end
