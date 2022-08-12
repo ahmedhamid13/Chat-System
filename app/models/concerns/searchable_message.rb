@@ -7,7 +7,7 @@ module SearchableMessage
     include Elasticsearch::Model
     # include Elasticsearch::Model::Callbacks
 
-    index_name Rails.application.class.parent_name.underscore
+    index_name Rails.application.class.module_parent_name.underscore
     document_type self.name.downcase
 
     def as_indexed_json(_options = {})
