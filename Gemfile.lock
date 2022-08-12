@@ -298,7 +298,7 @@ DEPENDENCIES
   pagy
   psych (< 4)
   puma (~> 3.11)
-  rails (~> 6.1)
+  rails (~> 6.1.4, >= 6.1.4.1)
   rails_performance
   redis
   rollbar
