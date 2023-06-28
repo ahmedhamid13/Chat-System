@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Message < ApplicationRecord
-  include SearchableMessage
+  # include SearchableMessage
 
   extend FriendlyId
   friendly_id :number, use: :slugged
